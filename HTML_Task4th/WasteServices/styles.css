@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #FFFFFF;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+/* Always 3 cards per row */
+.cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 95%;
+  max-width: 1200px;
+}
+
+/* Card design */
+.card {
+  background: #eeeeee;
+  height: 450px;
+  border-radius: 30px;
+  border: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  transition: .3s;
+  cursor: pointer;
+}
+
+/* Top half content style */
+.content {
+  height: 50%;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Icon */
+.icon {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.3;
+}
+/* Text goes on top now */
+.card p {
+  height: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* Image now at the bottom */
+.card-img {
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 0 0 30px 30px; /* bottom rounded corners */
+}
+
+/* Hover animation */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 18px 40px rgba(0,0,0,0.25);
+}
+
+/* Button for last card */
+.view-btn {
+  padding: 12px 32px;
+  background-color: #007BFF;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-btn:hover {
+  background-color: #005fcc;
+}

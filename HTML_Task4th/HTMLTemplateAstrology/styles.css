@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  /* Modern cosmic-style gradient background */
+  background: linear-gradient(135deg, #1A1F2B, #2D3A52, #3C4A65);
+  color: #fff;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+/* Main layout row */
+.layout {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 30px;
+}
+
+/* Card columns */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Card styling */
+.card {
+  width: 260px;
+  height: 260px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  position: relative;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 12px 35px rgba(0,0,0,0.35);
+}
+
+/* Small icon in corner */
+.card .icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+/* Title */
+.card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 50px;
+  color: #fff;
+}
+
+/* Description */
+.card p {
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Center tall image */
+.center-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0px 12px 35px rgba(0,0,0,0.35);
+  transition: 0.3s ease;
+}
+
+/* Subtle hover zoom for image */
+.center-image img:hover {
+  transform: scale(1.03);
+}
