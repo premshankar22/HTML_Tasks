@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <!-- Create a JavaScript class named Student with the following requirements: The class should have the properties: name, rollNo, and marks. Define a constructor to initialize these properties. Define a method getResult() that displays: "Pass" if marks are greater than or equal to 40 "Fail" if marks are less than 40 Create at least three objects of the Student class and display their results.-->
+
+
+<script>
+class Student {
+
+  constructor(name, rollNo, marks) {
+    this.name = name;
+    this.rollNo = rollNo;
+    this.marks = marks;
+  }
+
+  getResult() {
+    if (this.marks >= 40) {
+      return "Pass";
+    } else {
+      return "Fail";
+    }
+  }
+}
+
+const student1 = new Student("Prem", 1, 75);
+const student2 = new Student("Riya", 2, 35);
+const student3 = new Student("Rahul", 3, 50);
+
+console.log(`${student1.name} (Roll No: ${student1.rollNo}) → ${student1.getResult()}`);
+console.log(`${student2.name} (Roll No: ${student2.rollNo}) → ${student2.getResult()}`);
+console.log(`${student3.name} (Roll No: ${student3.rollNo}) → ${student3.getResult()}`);
+</script>
+
+
+
+<!--Develop a program based on inheritance using the following conditions: Create a base class Vehicle with properties brand and speed. Add a method start() that displays a starting message. Create a derived class Car that extends Vehicle and adds the property fuelType. Create another derived class Bike that extends Vehicle. Create objects of both Car and Bike and call all available methods.-->
+
+<script>
+  
+class Vehicle {
+  constructor(brand, speed) {
+    this.brand = brand;
+    this.speed = speed;
+  }
+
+  start() {
+    console.log(`${this.brand} is starting...`);
+  }
+
+  showDetails() {
+    console.log(`Brand: ${this.brand}, Speed: ${this.speed} km/h`);
+  }
+}
+
+
+class Car extends Vehicle {
+  constructor(brand, speed, fuelType) {
+    super(brand, speed); // Calls parent class constructor
+    this.fuelType = fuelType;
+  }
+
+  showCarDetails() {
+    console.log(`Car Details → Brand: ${this.brand}, Speed: ${this.speed} km/h, Fuel Type: ${this.fuelType}`);
+  }
+}
+
+class Bike extends Vehicle {
+  constructor(brand, speed) {
+    super(brand, speed);
+  }
+
+  showBikeDetails() {
+    console.log(`Bike Details → Brand: ${this.brand}, Speed: ${this.speed} km/h`);
+  }
+}
+
+
+const car1 = new Car("BMW", 220, "Petrol");
+const bike1 = new Bike("Yamaha", 180);
+
+console.log("=== Car ===");
+car1.start();
+car1.showDetails();
+car1.showCarDetails();
+
+console.log("\n=== Bike ===");
+bike1.start();
+bike1.showDetails();
+bike1.showBikeDetails();
+
+</script>
+
+  
+<!--Write a JavaScript program to demonstrate polymorphism using method overriding. Create a class Product with the properties name and price. Define a method getPrice() that returns the base price. Create two derived classes: DigitalProduct PhysicalProduct Override the getPrice() method in both classes: Digital product should return the base price. Physical product should return the base price plus a delivery charge of 50. Create objects of both types and display the final prices.-->
+
+
+<script>
+ 
+class Product {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  getPrice() {
+    return this.price;
+  }
+}
+
+
+class DigitalProduct extends Product {
+  getPrice() {
+    return this.price; 
+}
+}
+
+class PhysicalProduct extends Product {
+  // Overriding the method
+  getPrice() {
+    return this.price + 50; 
+  }
+}
+
+const ebook = new DigitalProduct("JavaScript E-Book", 500);
+const laptop = new PhysicalProduct("Laptop", 60000);
+
+console.log(`${ebook.name} Final Price: ₹${ebook.getPrice()}`);
+console.log(`${laptop.name} Final Price: ₹${laptop.getPrice()}`);
+
+  </script>
+
+
+</body>
+</html>
