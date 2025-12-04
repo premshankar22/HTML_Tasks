@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Practice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+
+    <h1 class="main-title">JavaScript Practice Playground</h1>
+
+    <!-- Heading Section -->
+    <section class="card">
+      <h2 id="myHeading" class="heading">Hello World!</h2>
+      <button id="changeHeadingBtn" class="btn primary">Click Me</button>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="card">
+      <h3 class="section-title">Auto Counter</h3>
+      <p id="counter" class="counter-display">0</p>
+    </section>
+
+      <!-- NEW Manual Counter Section -->
+    <section class="card">
+      <h3 class="section-title">Manual Increment/Decrement Counter</h3>
+
+      <div class="manual-counter-box">
+        <button id="decrementBtn" class="btn warning">-</button>
+        <span id="manualCounter" class="manual-display">0</span>
+        <button id="incrementBtn" class="btn primary">+</button>
+      </div>
+    </section>
+
+    <!-- Text Change Section -->
+    <section class="card">
+      <h3 class="section-title">Change Text</h3>
+      <p id="text" class="paragraph">Original Text</p>
+      <button id="changeBtn" class="btn secondary">Change Me!</button>
+    </section>
+
+    <!-- Form Section -->
+    <section class="card">
+      <h3 class="section-title">Registration Form</h3>
+
+      <form id="registrationForm" novalidate>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+          <span id="userError" class="error-text"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+          <span id="emailError" class="error-text"></span>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn success" disabled>Submit</button>
+      </form>
+    </section>
+
+
+    <!-- To-Do List Section -->
+<section class="card">
+  <h3 class="section-title">Dynamic To-Do List</h3>
+
+  <div class="todo-input-container">
+    <input type="text" id="todoInput" placeholder="Enter a new task..." />
+    <button id="addTodoBtn" class="btn primary">Add Task</button>
+  </div>
+
+  <ul id="todoList" class="todo-list"></ul>
+</section>
+
+
+  </div>
+
+  <script>
+    // ===== Heading change =====
+    const heading = document.getElementById("myHeading");
+    const changeHeadingBtn = document.getElementById("changeHeadingBtn");
+
+    function changeHeadingText() {
+      heading.textContent = "Content Changed Successfully!";
+      heading.classList.add("heading-changed");
+    }
+
+    changeHeadingBtn.addEventListener("click", changeHeadingText);
+
+    // ===== Counter =====
+    const counterElement = document.getElementById("counter");
+    let count = 0;
+
+    setInterval(function () {
+      count++;
+      counterElement.textContent = count;
+    }, 1000);
+
+
+     // ===== NEW Manual Counter =====
+    const incrementBtn = document.getElementById("incrementBtn");
+    const decrementBtn = document.getElementById("decrementBtn");
+    const manualCounter = document.getElementById("manualCounter");
+
+    let manualValue = 0;
+
+    incrementBtn.addEventListener("click", () => {
+      manualValue++;
+      manualCounter.textContent = manualValue;
+      manualCounter.classList.add("pulse");
+      setTimeout(()=> manualCounter.classList.remove("pulse"), 200);
+    });
+
+    decrementBtn.addEventListener("click", () => {
+      if (manualValue > 0) {
+        manualValue--;
+      }
+      manualCounter.textContent = manualValue;
+      manualCounter.classList.add("pulse");
+      setTimeout(()=> manualCounter.classList.remove("pulse"), 200);
+    });
+
+    // ===== Text changer =====
+    const textElement = document.getElementById("text");
+    const changeBtn = document.getElementById("changeBtn");
+
+    function changeText2() {
+      textElement.textContent = "Text Changed!";
+      textElement.classList.add("text-changed");
+    }
+
+    changeBtn.addEventListener("click", changeText2);
+
+    // ===== Form validation =====
+    const usernameInput = document.getElementById("username");
+    const emailInput = document.getElementById("email");
+    const userError = document.getElementById("userError");
+    const emailError = document.getElementById("emailError");
+    const submitBtn = document.getElementById("submitBtn");
+    const form = document.getElementById("registrationForm");
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function validateForm() {
+      const usernameValid = usernameInput.value.trim() !== "";
+      const emailValid = emailPattern.test(emailInput.value.trim());
+
+      submitBtn.disabled = !(usernameValid && emailValid);
+    }
+
+    usernameInput.addEventListener("input", function () {
+      if (usernameInput.value.trim() === "") {
+        userError.textContent = "Username cannot be empty!";
+        usernameInput.classList.remove("input-valid");
+        usernameInput.classList.add("input-invalid");
+      } else {
+        userError.textContent = "";
+        usernameInput.classList.remove("input-invalid");
+        usernameInput.classList.add("input-valid");
+      }
+      validateForm();
+    });
+
+    emailInput.addEventListener("input", function () {
+      if (!emailPattern.test(emailInput.value.trim())) {
+        emailError.textContent = "Enter a valid email!";
+        emailInput.classList.remove("input-valid");
+        emailInput.classList.add("input-invalid");
+      } else {
+        emailError.textContent = "";
+        emailInput.classList.remove("input-invalid");
+        emailInput.classList.add("input-valid");
+      }
+      validateForm();
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // stop actual form submission
+
+      validateForm();
+
+      if (!submitBtn.disabled) {
+        alert("Form submitted successfully!");
+        form.reset();
+        userError.textContent = "";
+        emailError.textContent = "";
+        usernameInput.classList.remove("input-valid", "input-invalid");
+        emailInput.classList.remove("input-valid", "input-invalid");
+        submitBtn.disabled = true;
+      }
+    });
+
+
+    // ========= TO-DO LIST =========
+const todoInput = document.getElementById("todoInput");
+const addTodoBtn = document.getElementById("addTodoBtn");
+const todoList = document.getElementById("todoList");
+
+function addTask() {
+  const taskText = todoInput.value.trim();
+
+  if (taskText === "") {
+    alert("Please enter a task.");
+    return;
+  }
+
+  // Create LI
+  const li = document.createElement("li");
+  li.classList.add("todo-item");
+  li.textContent = taskText;
+
+  // Click to toggle completed
+  li.addEventListener("click", () => {
+    li.classList.toggle("completed");
+  });
+
+  // Remove button
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "✖";
+  removeBtn.classList.add("remove-btn");
+
+  removeBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent triggering complete toggle
+    li.remove();
+  });
+
+  li.appendChild(removeBtn);
+  todoList.appendChild(li);
+
+  todoInput.value = ""; // clear input
+}
+
+// Add Task Button
+addTodoBtn.addEventListener("click", addTask);
+
+// Add using Enter key
+todoInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addTask();
+});
+
+  </script>
+</body>
+</html>
