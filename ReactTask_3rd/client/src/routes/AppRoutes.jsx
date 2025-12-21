@@ -11,16 +11,11 @@ import TodoPage from "../pages/TodoPage";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* HOME */}
-        <Route path="/" element={<Home />} />
-
-        {/* MUSIC */}
+      <Routes>      
+        <Route path="/" element={<Home />} /> 
         <Route path="/music" element={<MusicLayout />}>
           <Route index element={<MusicPlayerPage />} />
-        </Route>
-
-        {/* TODO */}
+        </Route>     
         <Route path="/todo" element={<TodoLayout />}>
           <Route index element={<TodoPage />} />
         </Route>
