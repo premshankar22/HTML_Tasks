@@ -1,19 +1,19 @@
 import { createTheme } from "@mui/material/styles";
 
-/* ===============================
-   SPOTIFY DARK THEME
-================================ */
+/*
+   Dark THEME 
+ */
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
 
     primary: {
-      main: "#1DB954", // Spotify green
+      main: "#1DB954", 
     },
 
     background: {
-      default: "#121212", // Spotify background
-      paper: "#181818",   // Cards / surfaces
+      default: "#121212", 
+      paper: "#181818",   
     },
 
     text: {
@@ -75,15 +75,15 @@ export const darkTheme = createTheme({
   },
 });
 
-/* ===============================
-   LIGHT THEME (CLEAN & MODERN)
-================================ */
+/*
+   LIGHT THEME 
+ */
 export const lightTheme = createTheme({
   palette: {
     mode: "light",
 
     primary: {
-      main: "#1DB954", // Same brand color
+      main: "#1DB954", 
     },
 
     background: {
