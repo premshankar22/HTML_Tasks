@@ -2,7 +2,7 @@ const DB_NAME = "music-player-db";
 const STORE_NAME = "songs";
 const DB_VERSION = 1;
 
-/* ================= OPEN DB ================= */
+
 function openDB() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
@@ -19,7 +19,7 @@ function openDB() {
   });
 }
 
-/* ================= SAVE SONGS ================= */
+
 export async function saveSongsToDB(songs) {
   const db = await openDB();
   const tx = db.transaction(STORE_NAME, "readwrite");
@@ -30,7 +30,7 @@ export async function saveSongsToDB(songs) {
   return tx.complete;
 }
 
-/* ================= LOAD SONGS ================= */
+
 export async function loadSongsFromDB() {
   const db = await openDB();
   const tx = db.transaction(STORE_NAME, "readonly");
