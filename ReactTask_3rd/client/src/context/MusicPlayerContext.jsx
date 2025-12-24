@@ -8,14 +8,13 @@ export function MusicPlayerProvider({ children }) {
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  /* ================= AUTO LOAD FROM INDEXED DB ================= */
-  useEffect(() => {
+ 
     async function loadSongs() {
       const storedSongs = await loadSongsFromDB();
 
       const withUrls = storedSongs.map(song => ({
         ...song,
-        url: URL.createObjectURL(song.blob), // recreate playable URL
+        url: URL.createObjectURL(song.blob),
       }));
 
       setSongs(withUrls);
